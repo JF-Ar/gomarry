@@ -3,3 +3,16 @@
 /.idea
 .env
 /.env
+
+go.sum
+*.exe
+*.dll
+*.so
+*.dylib
+
+*.test
+
+*.out
+
+db/
+tmp
