@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/JF-Ar/gomarry/config"
-	r "github.com/JF-Ar/gomarry/router"
+	"github.com/JF-Ar/gomarry/router"
 )
 
 var (
@@ -11,9 +11,14 @@ var (
 
 func main() {
 	logger = config.GetLogger("main")
-	if er := config.Init(); er != nil {
-		logger.ErrorF("Error initializing config: %v", er)
+	db, err := config.Init()
+	if err != nil {
+		logger.ErrorF("Error initializing config: %v", err)
 	}
 
-	r.Router()
+	r := router.SetupRouter(db)
+	if err := r.Run(":8080"); err != nil {
+		logger.ErrorF("Error initializing server: %v", err)
+		panic(err)
+	}
 }

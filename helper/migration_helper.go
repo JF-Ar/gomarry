@@ -2,7 +2,7 @@
 // Usage: go run migration_helper.go <migration_name>
 // Example: go run migration_helper.go create_users_table
 
-package main
+package helper
 
 import (
 	"fmt"
