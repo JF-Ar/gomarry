@@ -7,15 +7,15 @@ var (
 	logger *Logger
 )
 
-func Init() error {
+func Init() (*gorm.DB, error) {
 	var err error
 	db, err = InitializeDb()
 
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return db, nil
 }
 
 func GetDB() *gorm.DB {
